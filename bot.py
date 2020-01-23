@@ -1,181 +1,76 @@
-from telegram.ext import Updater
-from telegram.ext import CommandHandler
+
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import json
 import requests
+from pprint import pprint
 
 
+print("BOT INITIALISED")
+# Add your bot token. You can do this using the Telegram Botfather
 updater = Updater(token='832579248:AAEB6Tfd67ZrTmV_laZa7KgAMTERyl76pHs', use_context=True)
-
 dispatcher = updater.dispatcher
 
+global dict
+global data
 
-#response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-#data = response.json()
-#fork = data["forks_count"]
+event = set()
 
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
+# Add the repo name and number of forks obtained from the JSON data of the github API
+response = requests.get("https://api.github.com/orgs/fedora-infra/repos")
 data = response.json()
-fork2 = data["forks_count"]
 
 
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork3 = data["forks_count"]
+ 
+    
+for i in data:
+
+        
+    name = i["name"]
+    fork = i["forks"] 
 
 
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork4 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork5 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork6 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork7 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork8 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork9 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork10 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork11 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork12 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork13 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork14 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork15 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork16 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork17 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork18 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork19 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork20 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork21 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork22 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork23 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork24 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork25 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork26 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork27 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork28 = data["forks_count"]
-
-
-response = requests.get("https://api.github.com/repos/fedora-infra/bodhi")
-data = response.json()
-fork29 = data["forks_count"]
+    dict = {name:fork}
+    print(dict)
+  
+print(dict)
 
 
 
+#dict = {'bodhi': 155,'fedora-packages': 58,'fedora-tagger': 25,'fedmsg': 93,'busmon': 2,'tahrir': 40,'tahrir-api': 16,'pkgwat.cli': 8,'pkgwat.api': 8,'fedora-openhw2012': 5,'datanommer': 16,'fedbadges': 14,'supybot-fedmsg': 2,'fedmsg_middleware': 4,'apps.fp.o': 32,'fedmsg_meta_fedora_infrastructure': 41,'packagedb': 3,'python-fedora': 32,'datagrepper': 21,'fas': 52,'fedmsg-notify': 5,'askbot-fedmsg': 1,'supybot-fedora': 14,'elections': 6,'kitchen': 12,'rube': 4,'fedocal': 16,'pkgdb2': 26,'gnome-tagger': 0,'flock-registration': 4,}   
 
+             
+    # /start command to indroduce itself
 def start(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Kreiger bot here, I am at your service master")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="FURK bot here, I am at your service master")
 
-def fork(update, context):
+# Read the text received by the sender and check the dictionary to see if it's there
+
+# /forks <name_of_repo> 
+
+def forks(update, context):
+    
+    chat_id = update.message.chat_id
+
+    try:
+       
+        repo_name = "".join(context.args)
+
+        print("Repo requested:", repo_name)
+
+        update.message.reply_text('Searching...')
+
+        print(dict.get(repo_name, "Repo not found :("))
+
+        value = dict.get(repo_name, "Repo not found :(")
+
+        update.message.reply_text(value)
+
+        # Prints this message if there is any problem    
+    except (IndexError, ValueError):
+        update.message.reply_text('Usage: /forks <repo-name>')
 
 
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Here are the number of forks from the fedora repo api")
-
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Repo 1:")
-    context.bot.send_message(chat_id=update.effective_chat.id, text=fork10)
-
-
-
-
-
-
-start_handler = CommandHandler('ACTIVATE', start)
-get_fork_handler = CommandHandler('forks', fork)
-
-
+dispatcher.add_handler(CommandHandler("forks", forks, pass_args=True,pass_job_queue=True,pass_chat_data=True))
+start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
-dispatcher.add_handler(get_fork_handler)
-
 updater.start_polling()
